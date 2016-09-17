@@ -12,7 +12,7 @@ Gem::Specification.new do |spec|
   spec.email = 'wayne.5540@gmail.com'
   spec.homepage = 'https://github.com/wayne5540/pocket-api'
   spec.license = 'MIT'
-  spec.files = %w(README.md pocket_api.gemspec)
+  spec.files = %w(README.md LICENSE.md pocket_api.gemspec)
   spec.files += Dir.glob("lib/**/*.rb")
   spec.require_paths = ['lib']
 end
