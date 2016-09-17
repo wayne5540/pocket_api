@@ -1,4 +1,4 @@
 build:
-	gem build pocket_api.gemspec
+	gem build pocket-api.gemspec
 test:
 	bundle exec rspec

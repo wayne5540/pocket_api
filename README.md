@@ -3,6 +3,12 @@
 Non-official Ruby wrapper for [Pocket API](https://getpocket.com/developer/)
 
 
+## Install
+
+```
+gem install pocket-api
+```
+
 ## Usage
 
 ### Configuration
