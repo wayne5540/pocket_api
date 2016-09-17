@@ -19,27 +19,37 @@ PocketAPI.configure do |config|
 end
 ```
 
-### Fetch Items (TODO, priority=1)
+### Fetch Items
 
-#### Make request
 
 ```rb
 access_token = "UserAccessToken"
 client = PocketAPI::Client.new(access_token)
 items = client.retrieve({ detailType: "simple" }) #=> returns Collection of Items
+
+article_items = items.where(is_article: true)
+item = article_items.first
+item.is_article #=> true
+item.status #=> 0
 ```
 
-#### Play with response
+## TODO Usage
+
+### Fetch Items (TODO, priority=1)
 
 ```rb
 items.unread #=> Returns PocketAPI::Item Collection with only unread items
 items.archived #=> Returns PocketAPI::Item Collection with only archived items
 items.deleted #=> Returns PocketAPI::Item Collection with only deleted items
-items.where(contentType: "article") #=> Returns PocketAPI::Item Collection with only items tagged as `contentType == "article"`, etc...
 item.tags #=> Returns PocketAPI::Tag Collection
 item.authors #=> Returns PocketAPI::Auther Collection
 item.images #=> Returns PocketAPI::Image Collection
 item.videos #=> Returns PocketAPI::Video Collection
+
+item.status #=> :unread
+item.unread? #=> boolean
+item.archived? #=> boolean
+item.deleted? #=> boolean
 ```
 
 ### Create Item (TODO, priority=2)
