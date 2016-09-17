@@ -1,6 +1,7 @@
 require 'pocket_api/configurable'
 require 'pocket_api/item'
 require 'pocket_api/collection'
+require 'pocket_api/client'
 
 module PocketAPI
   class Error < StandardError; end
@@ -8,9 +9,5 @@ module PocketAPI
 
   class << self
     include PocketAPI::Configurable
-  end
-
-  def self.say
-    "Heeeeelo World"
   end
 end

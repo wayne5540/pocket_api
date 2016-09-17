@@ -4,6 +4,7 @@ module PocketAPI
 
     def configure
       yield self
+      Pocket.configure { |config| yield config }
     end
   end
 end

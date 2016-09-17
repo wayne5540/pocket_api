@@ -19,9 +19,8 @@ end
 
 ```rb
 access_token = "UserAccessToken"
-client = PocketAPI::Client.new(access_token, { detailType: "simple" })
-client.params[:sort] = "newest"
-items = client.retrieve #=> returns Collection of Items
+client = PocketAPI::Client.new(access_token)
+items = client.retrieve({ detailType: "simple" }) #=> returns Collection of Items
 ```
 
 #### Play with response

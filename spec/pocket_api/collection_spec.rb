@@ -98,7 +98,16 @@ RSpec.describe PocketAPI::Collection do
           expect(subject.count).to eq(0)
         end
       end
-      
+
+      describe "returns duplicated collection" do
+        let(:value) { hashes.first['item_id'] }
+        let(:old_collection) { collection }
+
+        specify do
+          expect(subject).not_to eq(old_collection)
+        end
+      end
     end
+
   end
 end

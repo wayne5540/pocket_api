@@ -1,10 +1,4 @@
 RSpec.describe PocketAPI do
-  describe '.say' do
-    specify do
-      expect(described_class.say).to eq("Heeeeelo World")
-    end
-  end
-
   describe '.configure' do
     it 'sets the consumer_key' do
       PocketAPI.configure do |config|
@@ -12,6 +6,7 @@ RSpec.describe PocketAPI do
       end
 
       expect(PocketAPI.consumer_key).to eq('consumer-key')
+      expect(Pocket.options[:consumer_key]).to eq('consumer-key')
     end
   end
 end
