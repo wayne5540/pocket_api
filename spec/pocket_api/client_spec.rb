@@ -10,15 +10,32 @@ RSpec.describe PocketAPI::Client do
     let(:options) { {} }
 
     context 'when success' do
-      around do |example|
-        VCR.use_cassette(:success_retrieve) do
-          example.call
+      context 'when items exist' do
+        around do |example|
+          VCR.use_cassette(:success_retrieve) do
+            example.call
+          end
+        end
+
+        it 'returns collection with items' do
+          expect(subject).to be_a(PocketAPI::Collection)
+          expect(subject.data.all? { |o| o.is_a?(PocketAPI::Item) }).to be true
         end
       end
 
-      it 'returns collection with items' do
-        expect(subject).to be_a(PocketAPI::Collection)
-        expect(subject.data.all? { |o| o.is_a?(PocketAPI::Item) }).to be true
+      context 'when items is empty' do
+        let(:options) { {since: Time.now.to_i} }
+        around do |example|
+          VCR.use_cassette(:success_retrieve_with_empty_items) do
+            example.call
+          end
+        end
+
+        it 'returns collection with items' do
+          expect(subject).to be_a(PocketAPI::Collection)
+          expect(subject.data.all? { |o| o.is_a?(PocketAPI::Item) }).to be true
+          expect(subject.data.count).to eq(0)
+        end
       end
     end
 

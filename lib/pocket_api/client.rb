@@ -8,7 +8,12 @@ module PocketAPI
 
     def retrieve(options={})
       info = @client.retrieve(options)
-      hashes = info['list'].values
+      hashes = if info['list'].empty?
+        []
+      else
+        info['list'].values
+      end
+
       Collection.new(Item, hashes)
     end
   end
