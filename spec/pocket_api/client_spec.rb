@@ -12,7 +12,7 @@ RSpec.describe PocketAPI::Client do
     context 'when success' do
       context 'when items exist' do
         around do |example|
-          VCR.use_cassette(:success_retrieve) do
+          VCR.use_cassette('retrieve/simple_success') do
             example.call
           end
         end
@@ -26,7 +26,7 @@ RSpec.describe PocketAPI::Client do
       context 'when items is empty' do
         let(:options) { {since: Time.now.to_i} }
         around do |example|
-          VCR.use_cassette(:success_retrieve_with_empty_items) do
+          VCR.use_cassette('retrieve/simple_success_empty_items') do
             example.call
           end
         end
@@ -41,7 +41,7 @@ RSpec.describe PocketAPI::Client do
 
     context 'when consumer_key invalid' do
       around do |example|
-        VCR.use_cassette(:consumer_key_invalid) do
+        VCR.use_cassette('retrieve/consumer_key_invalid') do
           example.call
         end
       end
@@ -53,7 +53,7 @@ RSpec.describe PocketAPI::Client do
 
     context 'when access_token invalid' do
       around do |example|
-        VCR.use_cassette(:access_token_invalid) do
+        VCR.use_cassette('retrieve/access_token_invalid') do
           example.call
         end
       end
